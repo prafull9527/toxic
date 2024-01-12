@@ -1,0 +1,47 @@
+<!--Slip No.29
+Q. 1) Write a PHP script for the following: Design a form to accept a number from the user.
+Perform the operations and show the results.
+1) Fibonacci Series.
+2) To find sum of the digits of that number.(Use the concept of self processing page.-->
+<html>
+<body>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method=POST>
+Enter Number :<input type=text name=n><br>
+<input type=radio name=ch value=1>Fibonacci Series.<br>
+<input type=radio name=ch value=2>Sum of the digits of a number.<br>
+<input type=submit name=submit value=submit><br>
+</form>
+<?php
+if(isset($_POST['submit']))
+{
+$n=$_POST['n'];
+$ch=$_POST['ch'];
+switch($ch)
+{
+case 1:
+$f1 = 0;
+$f2 = 1;
+echo"Fibonacci series is:<br>";
+for($i=1;$i<=$n;$i++)
+{
+echo $f1."<br>";
+$f3 = $f1 + $f2;
+$f1 = $f2;
+$f2 = $f3;
+}
+break;
+case 2:
+$sum=0;
+$rem;
+while($n!=0)
+{
+$rem=$n%10;
+$sum=$sum+$rem;
+$n=$n/10;
+}
+echo "Sum of digits is = $sum";
+break;
+}
+}
+?></body></html>
+

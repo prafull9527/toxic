@@ -1,0 +1,220 @@
+Slip No.1
+Q. 1) Write a PHP script to keep track of number of times the web page has been accessed
+(Use Session Tracking).
+<?php
+if(!isset($_COOKIE['count']))
+{
+setcookie('count',0);
+}
+else
+{
+$count=$_COOKIE['count'];
+setcookie('count',++$count);
+echo"This page is accessed" .$_COOKIE['count']. "times";
+}
+?>
+<?php
+session_start();
+if(!isset($_SESSION['count']))
+{
+$_SESSION['count']=0;
+}
+else
+{
+$_SESSION['count']=$_SESSION['count']+1;
+e cho"This page is accessed" .$_SESSION['count']. "times";
+}
+?>	
+Slip No. 2
+Q. 1 Write a PHP script to change the preferences of your web page like font style, font size,
+font color, background color using cookie. Display selected setting on next web page and
+actual implementation (with new settings) on third page (Use Cookies).
+font.html
+<html>
+<body>
+<form action="font.php" method="post">
+<center>
+<b>Select font style :</b><input type=text name=style> <br>
+<b>Enter font size : </b><input type=text name=size><br>
+<b>Enter font color : </b><input type=text name=color><br>
+<b>Enter background color :</b> <input type=text name=bg><br>
+<input type=submit value="Next">
+</center>
+</form>
+</body>
+</html>
+font.php
+<?php
+$style=$_POST['style'];
+$size=$_POST['size'];
+$color=$_POST['color'];
+$bg=$_POST['bg'];
+echo"<br> Style is: ".$style;
+echo"<br> Size is: ".$size;
+echo"<br> Color is: ".$color;
+echo"<br> Background color is: ".$bg;
+setcookie("c1",$style,time()+3600);
+setcookie("c2",$size,time()+3600);
+setcookie("c3",$color,time()+3600);
+setcookie("c4",$bg,time()+3600);
+?>
+<html>
+<body>
+<form action="font1.php">
+<input type=submit value=OK>
+</form>
+</body>
+</html>
+font1.php
+<?php
+$style = $_COOKIE['c1'];
+$size = $_COOKIE['c2'];
+$color = $_COOKIE['c3'];
+$bg= $_COOKIE['c4'];
+$msg = "Welcome to Web technologies";
+echo "<body bgcolor=$bg>";
+echo "<font size=$size color=$color>$msg</font></body>";
+?>
+Slip No.3
+Write a PHP script to accept username and password. If in the first three chances, username
+and password entered is correct then display second form with “Welcome message” otherwise
+display error message. [Use Session]
+<html>
+<body>
+<form method=post action="<?php echo $_SERVER['PHP_SELF']?>">
+Enter User Name : <input type=text name=user><br><br>
+Enter Password : <input type=password name=pass><br><br>
+<input type=submit name=submit value="Log In">
+</form>
+<?php
+session_start();
+if(isset($_POST['submit']))
+{
+$user=$_POST['user'];
+$pass=$_POST['pass'];
+if(isset($_SESSION['count']))
+{
+$count=$_SESSION['count'];
+}
+else
+{
+$count=0;
+}
+$count++;
+$_SESSION['count']=$count;
+if(isset($user) && isset($pass) && $count<=3 && $user===$pass)
+{
+echo"Welcome..Login Successful";
+}
+if($count>3)
+{
+echo "3 attempts are over";
+}
+}
+?>
+</body>
+</html>
+Slip No.4
+Q. 1) Write a PHP script to accept Employee details (Eno, Ename, Address) on first page. On
+second age accept earning (Basic, DA, HRA). On third page print Employee information
+(Eno, Ename, Address, Basic, DA, HRA, Total) [ Use Session]
+<html>
+emp.html
+<html>
+<body>
+<form action="emp.php" method="get">
+<center> <h2>Enter Enployee Details :</h2> <br>
+<b>Emp no :</b><input type=text name=eno><br>
+<b> Name :</b><input type=text name=ename><br>
+<b>Address :</b><input type=text name=eadd><br>
+<input type=submit value=Show name=submit>
+</center>
+</form>
+</body>
+</html>
+emp..php
+<?php
+session_start();
+$eno = $_GET['eno'];
+$ename= $_GET['ename’];
+$eadd = $_GET['eadd'];
+$_SESSION['eno'] = $eno;
+$_SESSION['enm'] = $ename;
+$_SESSION['eadd'] = $eadd;
+?>
+<html>
+<body>
+<form action="display.php" method="post">
+<center>
+<h2>Enter Earnings of Employee:</h2>
+Basic : <input type="text" name="e1"><br>
+DA : <input type="text" name="e2"><br>
+HRA : <input type="text" name="e3"><br>
+<input type="submit" value=Next>
+</center>
+</form>
+</body>
+</html>
+display.php
+<?php
+session_start();
+$e1 = $_POST['e1'];
+$e2 = $_POST['e2'];
+$e3= $_POST['e3'];
+echo "<h3>Employee Details</h3> ";
+echo "Name : ".$_SESSION['eno']."<br>";
+echo "Address : ".$_SESSION['enm']."<br>";
+echo "Class : ".$_SESSION['eadd']."<br>";
+echo "Basic : ".$e1."<br>";
+echo "DA : ".$e2."<br>";
+echo "HRA : ".$e3."<br>";
+$total = $e1+$e2+$e3;
+echo "<h2>Total Of Earnings Is : ".$total."</h2>";
+?>
+Slip No.29
+Q. 1) Write a PHP script for the following: Design a form to accept a number from the user.
+Perform the operations and show the results.
+1) Fibonacci Series.
+2) To find sum of the digits of that number.(Use the concept of self processing page.)
+<html>
+<body>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method=POST>
+Enter Number :<input type=text name=n><br>
+<input type=radio name=ch value=1>Fibonacci Series.<br>
+<input type=radio name=ch value=2>Sum of the digits of a number.<br>
+<input type=submit name=submit value=submit><br>
+</form>
+<?php
+if(isset($_POST['submit']))
+{
+$n=$_POST['n'];
+$ch=$_POST['ch'];
+switch($ch)
+{
+case 1:
+$f1 = 0;
+$f2 = 1;
+echo"Fibonacci series is:<br>";
+for($i=1;$i<=$n;$i++)
+{
+echo $f1."<br>";
+$f3 = $f1 + $f2;
+$f1 = $f2;
+$f2 = $f3;
+}
+break;
+case 2:
+$sum=0;
+$rem;
+while($n!=0)
+{
+$rem=$n%10;
+$sum=$sum+$rem;
+$n=$n/10;
+}
+echo "Sum of digits is = $sum";
+break;
+}
+}
+?></body></html>
+

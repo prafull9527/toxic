@@ -1,0 +1,51 @@
+<!--Slip No. 2
+Q. 1 Write a PHP script to change the preferences of your web page like font style, font size,
+font color, background color using cookie. Display selected setting on next web page and
+actual implementation (with new settings) on third page (Use Cookies).
+font.html-->
+<html>
+<body>
+<form action="font.php" method="post">
+<center>
+<b>Select font style :</b><input type=text name=style> <br>
+<b>Enter font size : </b><input type=text name=size><br>
+<b>Enter font color : </b><input type=text name=color><br>
+<b>Enter background color :</b> <input type=text name=bg><br>
+<input type=submit value="Next">
+</center>
+</form>
+</body>
+</html>
+font.php
+<?php
+$style=$_POST['style'];
+$size=$_POST['size'];
+$color=$_POST['color'];
+$bg=$_POST['bg'];
+echo"<br> Style is: ".$style;
+echo"<br> Size is: ".$size;
+echo"<br> Color is: ".$color;
+echo"<br> Background color is: ".$bg;
+setcookie("c1",$style,time()+3600);
+setcookie("c2",$size,time()+3600);
+setcookie("c3",$color,time()+3600);
+setcookie("c4",$bg,time()+3600);
+?>
+<html>
+<body>
+<form action="font1.php">
+<input type=submit value=OK>
+</form>
+</body>
+</html>
+font1.php
+<?php
+$style = $_COOKIE['c1'];
+$size = $_COOKIE['c2'];
+$color = $_COOKIE['c3'];
+$bg= $_COOKIE['c4'];
+$msg = "Welcome to Web technologies";
+echo "<body bgcolor=$bg>";
+echo "<font size=$size color=$color>$msg</font></body>";
+?>
+

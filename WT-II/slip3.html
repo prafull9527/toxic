@@ -1,0 +1,40 @@
+<!--Slip No.3
+Write a PHP script to accept username and password. If in the first three chances, username
+and password entered is correct then display second form with “Welcome message” otherwise
+display error message. [Use Session]-->
+<html>
+<body>
+<form method=post action="<?php echo $_SERVER['PHP_SELF']?>">
+Enter User Name : <input type=text name=user><br><br>
+Enter Password : <input type=password name=pass><br><br>
+<input type=submit name=submit value="Log In">
+</form>
+<?php
+session_start();
+if(isset($_POST['submit']))
+{
+$user=$_POST['user'];
+$pass=$_POST['pass'];
+if(isset($_SESSION['count']))
+{
+$count=$_SESSION['count'];
+}
+else
+{
+$count=0;
+}
+$count++;
+$_SESSION['count']=$count;
+if(isset($user) && isset($pass) && $count<=3 && $user===$pass)
+{
+echo"Welcome..Login Successful";
+}
+if($count>3)
+{
+echo "3 attempts are over";
+}
+}
+?>
+</body>
+</html>
+

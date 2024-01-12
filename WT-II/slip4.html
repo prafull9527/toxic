@@ -1,0 +1,58 @@
+<!--Slip No.4
+Q. 1) Write a PHP script to accept Employee details (Eno, Ename, Address) on first page. On
+second age accept earning (Basic, DA, HRA). On third page print Employee information
+(Eno, Ename, Address, Basic, DA, HRA, Total) [ Use Session]-->
+<html>
+emp.html
+<html>
+<body>
+<form action="emp.php" method="get">
+<center> <h2>Enter Enployee Details :</h2> <br>
+<b>Emp no :</b><input type=text name=eno><br>
+<b> Name :</b><input type=text name=ename><br>
+<b>Address :</b><input type=text name=eadd><br>
+<input type=submit value=Show name=submit>
+</center>
+</form>
+</body>
+</html>
+emp..php
+<?php
+session_start();
+$eno = $_GET['eno'];
+$ename= $_GET['ename’];
+$eadd = $_GET['eadd'];
+$_SESSION['eno'] = $eno;
+$_SESSION['enm'] = $ename;
+$_SESSION['eadd'] = $eadd;
+?>
+<html>
+<body>
+<form action="display.php" method="post">
+<center>
+<h2>Enter Earnings of Employee:</h2>
+Basic : <input type="text" name="e1"><br>
+DA : <input type="text" name="e2"><br>
+HRA : <input type="text" name="e3"><br>
+<input type="submit" value=Next>
+</center>
+</form>
+</body>
+</html>
+display.php
+<?php
+session_start();
+$e1 = $_POST['e1'];
+$e2 = $_POST['e2'];
+$e3= $_POST['e3'];
+echo "<h3>Employee Details</h3> ";
+echo "Name : ".$_SESSION['eno']."<br>";
+echo "Address : ".$_SESSION['enm']."<br>";
+echo "Class : ".$_SESSION['eadd']."<br>";
+echo "Basic : ".$e1."<br>";
+echo "DA : ".$e2."<br>";
+echo "HRA : ".$e3."<br>";
+$total = $e1+$e2+$e3;
+echo "<h2>Total Of Earnings Is : ".$total."</h2>";
+?>
+
