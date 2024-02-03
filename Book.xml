@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+<book category="Technical">
+<title>ABCD</title>
+<author>XYZ</author>
+<price>500</price>
+</book>
+
+<book category="Story">
+<title>LMNO</title>
+<author>ABCD</author>
+<price>300</price>
+</book>
+
+
+<book category="Yoga">
+<title>XYZ</title>
+<author>PQR</author>
+<price>200</price>
+</book>
+</bookstore>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

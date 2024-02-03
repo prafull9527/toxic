@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bookinfo>
+<!--by using Attribute <book id='1'>-->
+<!--without using Attribute <id>1</id>>-->
+<book id="1">
+<title>C Programming</title>
+<author>Denise Ritchie</author>
+<year>1971</year>
+</book>
+
+<book id="2">
+<title>Nirali Publication</title>
+<author>Padmana </author>
+<year>2021</year>
+</book>
+
+
+<book id="3">
+<title>Story</title>
+<author>Pandurang</author>
+<year>1941</year>
+</book>
+
+
+<book id="4">
+<title>Technical</title>
+<author>Vishal</author>
+<year>2020</year>
+</book>
+
+
+<book id="5">
+<title>PHP</title>
+<author>Vivek</author>
+<year>2018</year>
+</book>
+</bookinfo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
